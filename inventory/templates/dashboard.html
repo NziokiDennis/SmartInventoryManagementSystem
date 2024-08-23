@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 4px solid #0078d4;
+            margin-bottom: 20px;
+        }
+        .logout-button {
+            float: right;
+            margin-top: -50px;
+            margin-right: 20px;
+            padding: 8px 15px;
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        h2 {
+            color: #4a90e2;
+            margin-left: 20px;
+        }
+        .alert-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-left: 20px;
+        }
+        .alert-container .alert-item {
+            background: #fff;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 0 1 calc(50% - 40px); /* Two columns with equal width */
+            box-sizing: border-box;
+        }
+        .no-alerts {
+            color: #888;
+            font-style: italic;
+        }
+        nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        background-color: #4a90e2;
+        overflow: hidden;
+        text-align: center;
+    }
+    nav ul li {
+        display: inline;
+    }
+    nav ul li a {
+        text-decoration: none;
+        padding: 14px 20px;
+        display: inline-block;
+        color: white;
+        background-color: #4a90e2;
+        transition: background-color 0.3s;
+    }
+    nav ul li a:hover {
+        background-color: #333;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+  <nav>
+    <ul>
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'product_list' %}">Products</a></li>
+        <li><a href="{% url 'supplier_list' %}">Suppliers</a></li>
+        <li><a href="{% url 'order_list' %}">Orders</a></li>
+        <li><a href="{% url 'product_visualization' %}">Visualization</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</nav>
+    </header>
+
+    <!-- Low Stock Alerts Section -->
+    <h2>Low Stock Alerts</h2>
+    <div class="alert-container">
+        {% for product in low_stock_alerts %}
+            <div class="alert-item">
+                <strong>{{ product.name }}</strong><br>
+                Stock: {{ product.stock }}<br>
+                Reorder Point: {{ product.reorder_point }}
+            </div>
+        {% empty %}
+            <div class="alert-item no-alerts">
+                No low stock alerts
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- You can add other sections here for products, orders, and suppliers -->
+</body>
+</html>

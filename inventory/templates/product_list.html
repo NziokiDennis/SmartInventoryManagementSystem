@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 4px solid #0078d4;
+            margin-bottom: 20px;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            flex: 1 1 calc(50% - 20px);
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+        .product-card h2 {
+            color: #333;
+            font-size: 14px;
+            margin-top: 0;
+        }
+        .product-card p {
+            margin: 5px 0;
+        }
+        .product-card .price {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .product-card .stock {
+            color: #FF5722;
+        }
+        .product-card .reorder-point {
+            color: #2196F3;
+        }
+        nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        background-color: #4a90e2;
+        overflow: hidden;
+        text-align: center;
+    }
+    nav ul li {
+        display: inline;
+    }
+    nav ul li a {
+        text-decoration: none;
+        padding: 14px 20px;
+        display: inline-block;
+        color: white;
+        background-color: #4a90e2;
+        transition: background-color 0.3s;
+    }
+    nav ul li a:hover {
+        background-color: #333;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Products</h1>
+  <nav>
+    <ul>
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'product_list' %}">Products</a></li>
+        <li><a href="{% url 'supplier_list' %}">Suppliers</a></li>
+        <li><a href="{% url 'order_list' %}">Orders</a></li>
+        <li><a href="{% url 'product_visualization' %}">Visualization</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</nav>
+    </header>
+
+    <div class="container">
+        {% for product in products %}
+            <div class="product-card">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p class="price">Price: ${{ product.price }}</p>
+                <p class="stock">Stock: {{ product.stock }}</p>
+                <p class="reorder-point">Reorder Point: {{ product.reorder_point }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

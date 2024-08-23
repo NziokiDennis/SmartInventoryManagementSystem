@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2; /* Match header color with Products */
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 4px solid #0078d4; /* Match border color with Products */
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .supplier-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            flex: 1 1 calc(50% - 20px);
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+
+        .supplier-card h2 {
+            color: #333;
+            font-size: 14px;
+            margin-top: 0;
+        }
+
+        .supplier-card p {
+            margin: 5px 0;
+        }
+
+        .supplier-card .contact {
+            color: #FF5722;
+        }
+
+        .supplier-card .score {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: #4a90e2; /* Match nav bar color with Products */
+            overflow: hidden;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            padding: 14px 20px;
+            display: inline-block;
+            color: white;
+            background-color: #4a90e2; /* Match link color with Products */
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Supplier List</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'product_list' %}">Products</a></li>
+                <li><a href="{% url 'supplier_list' %}">Suppliers</a></li>
+                <li><a href="{% url 'order_list' %}">Orders</a></li>
+                <li><a href="{% url 'product_visualization' %}">Visualization</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% for supplier in suppliers %}
+            <div class="supplier-card">
+                <h2>{{ supplier.name }}</h2>
+                <p><strong>Contact Information:</strong> <span class="contact">{{ supplier.contact_information }}</span></p>
+                <p><strong>Reliability Score:</strong> <span class="score">{{ supplier.reliability_score }}</span></p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
