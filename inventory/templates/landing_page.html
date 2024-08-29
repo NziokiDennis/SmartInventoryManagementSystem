@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nzioki Smart Ventures</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/landing_page.css' %}">
+</head>
+<body>
+<div class="background-image">
+        <img src="{% static 'images/backgroundimage.jpg' %}" alt="Background Image">
+    </div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Nzioki Smart Ventures Logo">
+<!--            <h1>Nzioki Smart Ventures</h1>-->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h3>Welcome to Nzioki Smart Ventures</h3>
+            <p>Your trusted partner in inventory management and more.</p>
+            <a href="{% url 'register' %}" class="cta-button">Get Started</a>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Inventory Data Management</h3>
+                <p>Efficiently manage your inventory data with our comprehensive system, designed to ensure that your stock levels are always up-to-date. Nzioki Smart Ventures provides seamless integration with your existing workflows, making inventory tracking and management more accurate and less time-consuming.</p>
+            </div>
+            <div class="feature">
+                <h3>Inventory Analysis and Forecasting</h3>
+                <p>Make informed decisions with our advanced analysis and forecasting tools. Our system uses historical data and trends to predict future inventory needs, helping you avoid stockouts and overstock situations. Stay ahead of the curve with precise inventory planning.</p>
+            </div>
+            <div class="feature">
+                <h3>Interactive Inventory Visualizations</h3>
+                <p>Visualize your inventory data in real-time with our interactive dashboards and charts. Nzioki Smart Ventures offers a range of customizable visual tools that make it easier to understand your inventory status at a glance, facilitating better decision-making and operational efficiency.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 Nzioki Smart Ventures. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -55,7 +55,13 @@ ROOT_URLCONF = 'SmartInventoryManagementSystem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'inventory', 'inventory_clerks'),
+            os.path.join(BASE_DIR, 'inventory', 'suppliers'),
+            os.path.join(BASE_DIR, 'inventory', 'system_admins'),
+            os.path.join(BASE_DIR, 'inventory', 'store_managers'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,8 +80,10 @@ LOGIN_URL = '/login/'  # The URL to redirect to when login is required
 LOGIN_REDIRECT_URL = '/dashboard/'  # The URL to redirect to after a successful login
 LOGOUT_REDIRECT_URL = '/login/'  # The URL to redirect to after a successful logout
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -128,6 +136,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+# URL for serving static files during development
+STATIC_URL = '/static/'
+
+# Path where static files will be collected for production (used with collectstatic)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Additional directories to look for static files, if you have custom locations
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+# settings.py
+AUTH_USER_MODEL = 'inventory.User'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

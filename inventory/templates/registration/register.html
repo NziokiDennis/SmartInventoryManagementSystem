@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,95 +7,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
+        /* Internal CSS */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
         .container {
-            background: white;
-            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
         }
-        h1 {
+        h2 {
             text-align: center;
-            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px; /* Larger font size for headings */
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* Increased space between form groups */
         }
-        label {
+        .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             font-weight: bold;
+            font-size: 16px; /* Larger font size for labels */
         }
-        input {
+        .form-group input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 5px;
-            border: 1px solid #ddd;
+            padding: 12px; /* Increased padding for input fields */
+            border: 1px solid #ccc;
             border-radius: 4px;
-            box-sizing: border-box;
+            font-size: 16px; /* Larger font size for input text */
+        }
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-group .errors {
+            color: #dc3545;
+            font-size: 14px; /* Larger font size for error messages */
         }
         button {
-            width: 100%;
-            padding: 12px;
             background-color: #007bff;
+            color: #fff;
             border: none;
-            color: white;
+            padding: 12px 20px; /* Increased padding for button */
+            font-size: 18px; /* Larger font size for button text */
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            width: 100%;
         }
         button:hover {
             background-color: #0056b3;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-        }
-        p {
-            text-align: center;
-            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Register</h1>
-        <form method="post">
+        <h2>Register</h2>
+        <form method="post" novalidate>
             {% csrf_token %}
+            {{ form.non_field_errors }}
             <div class="form-group">
-                {{ form.username.label_tag }}<br>
-                {{ form.username }}<br>
-                {% for error in form.username.errors %}
-                    <span class="error">{{ error }}</span><br>
-                {% endfor %}
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                <div class="errors">
+                    {{ form.username.errors }}
+                </div>
             </div>
             <div class="form-group">
-                {{ form.password1.label_tag }}<br>
-                {{ form.password1 }}<br>
-                {% for error in form.password1.errors %}
-                    <span class="error">{{ error }}</span><br>
-                {% endfor %}
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                <div class="errors">
+                    {{ form.first_name.errors }}
+                </div>
             </div>
             <div class="form-group">
-                {{ form.password2.label_tag }}<br>
-                {{ form.password2 }}<br>
-                {% for error in form.password2.errors %}
-                    <span class="error">{{ error }}</span><br>
-                {% endfor %}
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                <div class="errors">
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                <div class="errors">
+                    {{ form.email.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                <div class="errors">
+                    {{ form.password1.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                <div class="errors">
+                    {{ form.password2.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.role.label_tag }}
+                {{ form.role }}
+                <div class="errors">
+                    {{ form.role.errors }}
+                </div>
             </div>
             <button type="submit">Register</button>
         </form>
-        <p><a href="{% url 'login' %}">Login</a></p>
     </div>
 </body>
 </html>
