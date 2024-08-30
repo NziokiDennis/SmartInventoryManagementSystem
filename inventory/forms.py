@@ -42,8 +42,6 @@ class RegistrationForm(forms.ModelForm):
             user.save()
         return user
 
-
 class LoginForm(AuthenticationForm):
     username = forms.CharField(max_length=254, widget=forms.TextInput(attrs={'autofocus': True}))
     password = forms.CharField(label="Password", strip=False, widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'}))
-    role = forms.ModelChoiceField(queryset=Role.objects.all(), required=True, label="Role")

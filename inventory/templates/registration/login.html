@@ -10,82 +10,50 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
+        .login-container {
+            background: white;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            width: 300px;
         }
-        h2 {
+        .login-container h1 {
             text-align: center;
-            color: #333;
-            font-size: 24px;
-        }
-        .form-group {
             margin-bottom: 20px;
         }
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .form-group input {
+        .login-container input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 5px;
         }
-        .form-group input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        .form-group .errors {
-            color: #dc3545;
-            font-size: 14px;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            font-size: 18px;
-            border-radius: 4px;
-            cursor: pointer;
+        .login-container button {
             width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        button:hover {
+        .login-container button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Login</h2>
-            <form method="post" action="{% url 'login' %}">
+    <div class="login-container">
+        <h1>Login</h1>
+        <form method="POST">
             {% csrf_token %}
-            {{ form.non_field_errors }}
-            <div class="form-group">
-                {{ form.username.label_tag }}
-                {{ form.username }}
-                <div class="errors">
-                    {{ form.username.errors }}
-                </div>
-            </div>
-            <div class="form-group">
-                {{ form.password.label_tag }}
-                {{ form.password }}
-                <div class="errors">
-                    {{ form.password.errors }}
-                </div>
-            </div>
+            {{ form.as_p }}
             <button type="submit">Login</button>
         </form>
     </div>

@@ -57,7 +57,7 @@ def user_logout(request):
 def dashboard(request):
     products = Product.objects.all()
     low_stock_alerts = [p for p in products if p.stock < p.reorder_point]
-    return render(request, 'store_managers/dashboard.html', {
+    return render(request, 'dashboard.html', {
         'low_stock_alerts': low_stock_alerts,
         'products': products,
         'orders': Order.objects.all(),
@@ -66,15 +66,15 @@ def dashboard(request):
 
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'store_managers/product_list.html', {'products': products})
+    return render(request, 'product_list.html', {'products': products})
 
 def order_list(request):
     orders = Order.objects.all()
-    return render(request, 'store_managers/order_list.html', {'orders': orders})
+    return render(request, 'order_list.html', {'orders': orders})
 
 def supplier_list(request):
     suppliers = Supplier.objects.all()
-    return render(request, 'store_managers/supplier_list.html', {'suppliers': suppliers})
+    return render(request, 'supplier_list.html', {'suppliers': suppliers})
 
 def landing_page(request):
     return render(request, 'landing_page.html')
@@ -98,7 +98,7 @@ def product_visualization(request):
     pie_fig = px.pie(pie_data, names='Product', values='Stock', title="Product Stock Distribution")
     pie_chart = plot(pie_fig, output_type='div')
 
-    return render(request, 'store_managers/product_visualization.html', {
+    return render(request, 'product_visualization.html', {
         'bar_chart': bar_chart,
         'pie_chart': pie_chart,
     })
@@ -110,11 +110,11 @@ def inventory_clerk_dashboard(request):
 
 @user_passes_test(lambda u: u.role.name == 'supplier')
 def supplier_dashboard(request):
-    return render(request, 'welcome_dashboard.html')
+    return render(request, 'supplier_dashboard.html')
 
 @user_passes_test(lambda u: u.role.name == 'system_admin')
 def system_admin_dashboard(request):
-    return render(request, 'welcome_dashboard.html')
+    return render(request, 'admin_dashboard.html')
 
 # Dashboard for Store Managers
 @user_passes_test(lambda u: u.role.name == 'store_manager')

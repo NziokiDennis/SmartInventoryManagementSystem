@@ -17,7 +17,7 @@ urlpatterns = [
 
     # New URLs for role-specific dashboards
     path('inventory_clerks/welcome_dashboard/', views.inventory_clerk_dashboard, name='inventory_clerk_dashboard'),
-    path('suppliers/welcome_dashboard/', views.supplier_dashboard, name='supplier_dashboard'),
-    path('system_admins/welcome_dashboard/', views.system_admin_dashboard, name='system_admin_dashboard'),
+    path('suppliers/supplier_dashboard/', views.supplier_dashboard, name='supplier_dashboard'),
+    path('system_admins/admin_dashboard/', views.system_admin_dashboard, name='system_admin_dashboard'),
     path('store_managers/dashboard/', views.store_manager_dashboard, name='store_manager_dashboard'),
 ]
